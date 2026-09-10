@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "KXHmryeD5Xk=",
+  "success": true,
+  "projectFilePath": "/Users/praniketbodke/projects/TalentMesh/src/Gateway/TalentMesh.Gateway/TalentMesh.Gateway.csproj",
+  "expectedPackageFiles": [
+    "/Users/praniketbodke/.nuget/packages/system.io.hashing/8.0.0/system.io.hashing.8.0.0.nupkg.sha512",
+    "/Users/praniketbodke/.nuget/packages/yarp.reverseproxy/2.3.0/yarp.reverseproxy.2.3.0.nupkg.sha512"
+  ],
+  "logs": []
+}

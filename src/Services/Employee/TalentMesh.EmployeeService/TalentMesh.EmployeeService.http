@@ -1,0 +1,6 @@
+@TalentMesh.EmployeeService_HostAddress = http://localhost:5087
+
+GET {{TalentMesh.EmployeeService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

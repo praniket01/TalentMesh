@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "dgSpecHash": "aiC8titM9Pc=",
+  "success": true,
+  "projectFilePath": "/Users/praniketbodke/projects/TalentMesh/src/Services/Employee/TalentMesh.EmployeeService/TalentMesh.EmployeeService.csproj",
+  "expectedPackageFiles": [
+    "/Users/praniketbodke/.nuget/packages/microsoft.aspnetcore.openapi/10.0.6/microsoft.aspnetcore.openapi.10.0.6.nupkg.sha512",
+    "/Users/praniketbodke/.nuget/packages/microsoft.openapi/2.0.0/microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'Microsoft.OpenApi' 2.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc",
+      "projectPath": "/Users/praniketbodke/projects/TalentMesh/src/Services/Employee/TalentMesh.EmployeeService/TalentMesh.EmployeeService.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/praniketbodke/projects/TalentMesh/src/Services/Employee/TalentMesh.EmployeeService/TalentMesh.EmployeeService.csproj",
+      "libraryId": "Microsoft.OpenApi",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Gateway/">
+    <Project Path="src/Gateway/TalentMesh.Gateway/TalentMesh.Gateway.csproj" />
+  </Folder>
+  <Folder Name="/src/Services/" />
+  <Folder Name="/src/Services/Employee/">
+    <Project Path="src/Services/Employee/TalentMesh.EmployeeService/TalentMesh.EmployeeService.csproj" />
+  </Folder>
+  <Folder Name="/src/Services/Identity/">
+    <Project Path="src/Services/Identity/TalentMesh.IdentityService/TalentMesh.IdentityService.csproj" />
+  </Folder>
+</Solution>
