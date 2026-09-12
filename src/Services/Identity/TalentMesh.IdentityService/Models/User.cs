@@ -1,4 +1,4 @@
-namespace src.Services.Identity.TalentMesh.IdentityService.Models;
+namespace TalentMesh.IdentityService.Models;
 
 public class User
 {

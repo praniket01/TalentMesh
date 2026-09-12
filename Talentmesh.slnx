@@ -1,7 +1,9 @@
 <Solution>
   <Folder Name="/src/" />
   <Folder Name="/src/Gateway/">
-    <Project Path="src/Gateway/TalentMesh.Gateway/TalentMesh.Gateway.csproj" />
+    <Project Path="src/Gateway/TalentMesh.Gateway/TalentMesh.Gateway.csproj">
+      <Build Solution="Debug|*" Project="false" />
+    </Project>
   </Folder>
   <Folder Name="/src/Services/" />
   <Folder Name="/src/Services/Employee/">

@@ -22,7 +22,7 @@ namespace TalentMesh.IdentityService.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("src.Services.Identity.TalentMesh.IdentityService.Models.User", b =>
+            modelBuilder.Entity("TalentMesh.IdentityService.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()

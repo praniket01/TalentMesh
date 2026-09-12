@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using TalentMesh.IdentityService.Data;
-using TalentMesh.IdentityService.Data;
+using TalentMesh.IdentityService.DTOs;
 
 namespace TalentMesh.IdentityService.Services;
 
@@ -22,8 +22,9 @@ public class AuthService : IAuthService
         _configuration = configuration;
     }
 
-    public async Task<LoginResponse> LoginAsync(LoginRequest request){
-        var user = await _context.Users.FirstOrDefault(x => x.Email == request.Email);
+    public async Task<LoginResponseDto> LoginAsync(LoginRequestDto request){
+        //var user = await _context.Users.FirstOrDefault(x => x.Email == request.Email);
+        var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == request.Email);
 
         if(user == null) return null;
 
@@ -64,7 +65,7 @@ public class AuthService : IAuthService
             expires: DateTime.UtcNow.AddHours(2),
             signingCredentials: credentials);
         
-        return new LoginResponse{
+        return new LoginResponseDto{
             Token = new JwtSecurityTokenHandler().WriteToken(token),
 
             UserId = user.Id,

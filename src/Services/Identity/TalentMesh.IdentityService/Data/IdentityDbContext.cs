@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using src.Services.Identity.TalentMesh.IdentityService.Models;
+using TalentMesh.IdentityService.Models;
 
 namespace TalentMesh.IdentityService.Data;
 

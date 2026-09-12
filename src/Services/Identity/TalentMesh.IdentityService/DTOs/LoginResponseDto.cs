@@ -1,6 +1,6 @@
 namespace TalentMesh.IdentityService.DTOs;
 
-public class LoginResponse
+public class LoginResponseDto
 {
     public string Token { get; set; } = string.Empty;
 

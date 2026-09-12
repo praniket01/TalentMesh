@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TalentMesh.IdentityService.Data;
-using src.Services.Identity.TalentMesh.IdentityService.Models;
+using TalentMesh.IdentityService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,14 +11,21 @@ builder.Services.AddDbContext<IdentityDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection")
     ));
 
-// builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAuthService,AuthService>();
 
-// builder.Services.AddEndpointsApiExplorer();
-// builder.Services.AddSwaggerGen();
+
 
 var app = builder.Build();
 
 app.UseHttpsRedirection();
+
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<IdentityDbContext>();
+
+    await context.Database.MigrateAsync();
+    await DbSeeder.SeedAsync(context);
+}
 
 app.MapControllers();
 
