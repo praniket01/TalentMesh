@@ -15,9 +15,17 @@ export const routes: Routes = [
                 .then(m => m.DashboardComponent)
     },
 
+
     {
         path: '',
-        redirectTo: 'login',
-        pathMatch: 'full'
-    }
+        loadComponent: () =>
+            import('./app')
+                .then(m => m.App)
+    },
+
+    // {
+    //     path: '',
+    //     redirectTo: 'login',
+    //     pathMatch: 'full'
+    // }
 ];

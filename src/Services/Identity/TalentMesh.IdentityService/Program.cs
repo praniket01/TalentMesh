@@ -13,7 +13,15 @@ builder.Services.AddDbContext<IdentityDbContext>(options =>
 
 builder.Services.AddScoped<IAuthService,AuthService>();
 
-
+builder.Services.AddCors(options => {
+       options.AddPolicy("AllowSpecificOrigin", builder =>
+    {
+        builder.WithOrigins("http://localhost:4200") 
+               .AllowAnyHeader()
+               .AllowAnyMethod()
+               .AllowCredentials(); 
+    });
+});
 
 var app = builder.Build();
 
@@ -26,6 +34,9 @@ using (var scope = app.Services.CreateScope())
     await context.Database.MigrateAsync();
     await DbSeeder.SeedAsync(context);
 }
+
+app.UseCors("AllowSpecificOrigin");
+
 
 app.MapControllers();
 

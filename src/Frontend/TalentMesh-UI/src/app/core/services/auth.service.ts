@@ -22,7 +22,7 @@ interface LoginResponse {
 export class AuthService {
 
     private http = inject(HttpClient);
-    private readonly apiUrl = 'https://localhost:8000/api';
+    private readonly apiUrl = 'http://localhost:8000/api';
 
     login(request: LoginRequest): Observable<LoginResponse> {
         return this.http
