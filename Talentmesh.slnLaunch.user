@@ -4,15 +4,18 @@
     "Projects": [
       {
         "Path": "src\\Services\\Employee\\TalentMesh.EmployeeService\\TalentMesh.EmployeeService.csproj",
-        "Action": "Start"
+        "Action": "Start",
+        "DebugTarget": "http"
       },
       {
         "Path": "src\\Services\\Identity\\TalentMesh.IdentityService\\TalentMesh.IdentityService.csproj",
-        "Action": "Start"
+        "Action": "Start",
+        "DebugTarget": "http"
       },
       {
         "Path": "src\\Gateway\\TalentMesh.Gateway\\TalentMesh.Gateway.csproj",
-        "Action": "Start"
+        "Action": "Start",
+        "DebugTarget": "http"
       }
     ]
   }

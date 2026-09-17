@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TalentMesh.EmployeeService.Models;
+using TalentMesh.EmployeeService.Services;
 
 namespace TalentMesh.EmployeeService.Controller
 {
@@ -9,30 +11,20 @@ namespace TalentMesh.EmployeeService.Controller
     [Authorize]
     public class EmployeeController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult Get()
+        private readonly IEmployeeService _employeeService;
+
+        public EmployeeController(  IEmployeeService employeeService)
         {
-            return Ok(new[]
-            {
-                new
-                {
-                      Id = 1,
-                Name = "Rahul Sharma",
-                Department = "Engineering",
-                Designation = "Senior .NET Developer",
-                Experience = 5,
-                Availability = 60
-                },
-                new
-                {
-                     Id = 2,
-                Name = "Sneha Joshi",
-                Department = "Engineering",
-                Designation = "Frontend Developer",
-                Experience = 3,
-                Availability = 80
-                },
-            });
+            _employeeService = employeeService;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var employees = await _employeeService.GetAllAsync();
+
+            return Ok(employees);
+        }
+        
     }
 }
