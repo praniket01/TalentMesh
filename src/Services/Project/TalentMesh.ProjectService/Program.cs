@@ -21,6 +21,16 @@ builder.Services.AddDbContext<ProjectDbContext>(options =>
 
 builder.Services.AddScoped<IProjectServices, ProjectServices>();
 
+builder.Services.AddCors(options => {
+    options.AddPolicy("AllowSpecificOrigin", builder =>
+    {
+        builder.WithOrigins("http://localhost:8000")
+               .AllowAnyHeader()
+               .AllowAnyMethod()
+               .AllowCredentials();
+    });
+});
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
     options.TokenValidationParameters = new TokenValidationParameters
     {
@@ -46,6 +56,9 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.UseCors("AllowSpecificOrigin");
+
 
 app.UseHttpsRedirection();
 
