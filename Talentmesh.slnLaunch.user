@@ -1,6 +1,6 @@
 [
   {
-    "Name": "Emp+Auth+Gateway",
+    "Name": "Emp+Auth+Gateway+Project",
     "Projects": [
       {
         "Path": "src\\Services\\Employee\\TalentMesh.EmployeeService\\TalentMesh.EmployeeService.csproj",
@@ -14,6 +14,11 @@
       },
       {
         "Path": "src\\Gateway\\TalentMesh.Gateway\\TalentMesh.Gateway.csproj",
+        "Action": "Start",
+        "DebugTarget": "http"
+      },
+      {
+        "Path": "src\\Services\\Project\\TalentMesh.ProjectService\\TalentMesh.ProjectService.csproj",
         "Action": "Start",
         "DebugTarget": "http"
       }

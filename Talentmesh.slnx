@@ -12,4 +12,7 @@
   <Folder Name="/src/Services/Identity/">
     <Project Path="src/Services/Identity/TalentMesh.IdentityService/TalentMesh.IdentityService.csproj" />
   </Folder>
+  <Folder Name="/src/Services/Project/">
+    <Project Path="src/Services/Project/TalentMesh.ProjectService/TalentMesh.ProjectService.csproj" Id="10b7a26b-7d69-40fa-b0be-4d10d13670e3" />
+  </Folder>
 </Solution>
