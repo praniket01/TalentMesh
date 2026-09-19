@@ -1,0 +1,61 @@
+.resource-pool {
+  padding: 2rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.employee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.employee-card {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.employee-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.employee-header h2 {
+  margin: 0;
+}
+
+.employee-header p {
+  margin-top: 0.4rem;
+}
+
+.availability {
+  font-weight: bold;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.skill {
+  padding: 0.35rem 0.7rem;
+  border-radius: 20px;
+  background: #eee;
+}
+
+button {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

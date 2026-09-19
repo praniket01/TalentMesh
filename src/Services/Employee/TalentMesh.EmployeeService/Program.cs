@@ -18,6 +18,18 @@ builder.Services.AddDbContext<EmployeeDbContext>(
            "DefaultConnection"
        ));
     });
+
+    builder.Services.AddCors(options => {
+       options.AddPolicy("AllowSpecificOrigin", builder =>
+    {
+        builder.WithOrigins("http://localhost:8000") 
+               .AllowAnyHeader()
+               .AllowAnyMethod()
+               .AllowCredentials(); 
+    });
+});
+
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -73,6 +85,9 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<EmployeeDbContext>();
     await DbSeeder.SeedAsync(db);
 }
+
+app.UseCors("AllowSpecificOrigin");
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

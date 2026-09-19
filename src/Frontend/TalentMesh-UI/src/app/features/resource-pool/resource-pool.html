@@ -1,0 +1,67 @@
+<div class="resource-pool">
+
+  <div class="header">
+    <h1>Resource Pool</h1>
+
+    <p>
+      Find employees based on skills, experience and availability.
+    </p>
+  </div>
+
+  @if(loading){
+    <p>Loading employees...</p>
+  }
+
+  @if(error){
+    <p>{{ error }}</p>
+  }
+
+  <div class="employee-grid">
+
+    @for (employee of Employees; track employee.id) {
+
+      <div class="employee-card">
+
+        <div class="employee-header">
+
+          <div>
+            <h2>{{ employee.name }}</h2>
+            <p>{{ employee.designation }}</p>
+          </div>
+
+          <span class="availability">
+            {{ 100 - employee.allocationPercentage }}% Available
+          </span>
+
+        </div>
+
+        <p>
+          📍 {{ employee.location }}
+        </p>
+
+        <p>
+          Experience:
+          <strong>{{ employee.experienceYears }} years</strong>
+        </p>
+
+        <div class="skills">
+
+          @for (skill of employee.skills; track skill) {
+            <span class="skill">
+              {{ skill }}
+            </span>
+          }
+
+        </div>
+
+        <button>
+          View Profile
+        </button>
+
+      </div>
+
+    }
+
+  </div>
+
+</div>

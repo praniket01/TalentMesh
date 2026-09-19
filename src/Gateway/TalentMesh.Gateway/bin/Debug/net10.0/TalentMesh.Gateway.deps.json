@@ -634,7 +634,9 @@
       "TalentMesh.EmployeeService/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.12",
-          "Microsoft.AspNetCore.OpenApi": "10.0.12"
+          "Microsoft.AspNetCore.OpenApi": "10.0.12",
+          "Microsoft.EntityFrameworkCore": "10.0.12",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.3"
         },
         "runtime": {
           "TalentMesh.EmployeeService.dll": {

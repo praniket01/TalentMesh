@@ -14,7 +14,13 @@ export const routes: Routes = [
             import('./features/dashboard/dashboard.component')
                 .then(m => m.DashboardComponent)
     },
-
+    {
+        path : 'resource-pool',
+        loadComponent : () => 
+            import('./features/resource-pool/resource-pool')
+            .then(m => m.Resourcepool)
+        ,
+    },
 
     {
         path: '',
