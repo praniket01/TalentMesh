@@ -9,59 +9,175 @@
   </div>
 
   @if(loading){
-    <p>Loading employees...</p>
+  <p>Loading employees...</p>
   }
 
   @if(error){
-    <p>{{ error }}</p>
+  <p>{{ error }}</p>
   }
+  <div class="search-container">
 
+    <input type="text" placeholder="Search employees, skills, location..." [(ngModel)]="searchTerm" />
+
+    <div class="filters">
+
+      <input type="text" placeholder="Search employees, skills, location..." [(ngModel)]="searchTerm" />
+
+      <select [(ngModel)]="minAvailability">
+
+        <option [ngValue]="null">
+          Any availability
+        </option>
+
+        <option [ngValue]="20">
+          20%+
+        </option>
+
+        <option [ngValue]="40">
+          40%+
+        </option>
+
+        <option [ngValue]="60">
+          60%+
+        </option>
+
+        <option [ngValue]="80">
+          80%+
+        </option>
+
+      </select>
+
+      <select [(ngModel)]="selectedSkill">
+
+        <option value="">
+          All skills
+        </option>
+
+        @for (skill of availableSkills; track skill) {
+
+        <option [value]="skill">
+          {{ skill }}
+        </option>
+
+        }
+
+      </select>
+    </div>
+  </div>
   <div class="employee-grid">
 
-    @for (employee of Employees; track employee.id) {
+    @for (employee of filteredEmployees; track employee.id){
 
-      <div class="employee-card">
+    <div class="employee-card">
 
-        <div class="employee-header">
+      <div class="employee-header">
 
-          <div>
-            <h2>{{ employee.name }}</h2>
-            <p>{{ employee.designation }}</p>
-          </div>
-
-          <span class="availability">
-            {{ 100 - employee.allocationPercentage }}% Available
-          </span>
-
+        <div>
+          <h2>{{ employee.name }}</h2>
+          <p>{{ employee.designation }}</p>
         </div>
 
-        <p>
-          📍 {{ employee.location }}
-        </p>
-
-        <p>
-          Experience:
-          <strong>{{ employee.experienceYears }} years</strong>
-        </p>
-
-        <div class="skills">
-
-          @for (skill of employee.skills; track skill) {
-            <span class="skill">
-              {{ skill }}
-            </span>
-          }
-
-        </div>
-
-        <button>
-          View Profile
-        </button>
+        <span class="availability">
+          {{ 100 - employee.allocationPercentage }}% Available
+        </span>
 
       </div>
 
+      <p>
+        📍 {{ employee.location }}
+      </p>
+
+      <p>
+        Experience:
+        <strong>{{ employee.experienceYears }} years</strong>
+      </p>
+
+      <div class="skills">
+
+        @for (skill of employee.skills; track skill) {
+        <span class="skill">
+          {{ skill }}
+        </span>
+        }
+
+      </div>
+
+      <button (click)="viewProfile(employee)">
+        View Profile
+      </button>
+
+    </div>
+
     }
 
+    @if (selectedEmployee) {
+
+  <div class="profile-panel">
+
+    <button
+      class="close-button"
+      (click)="selectedEmployee = null">
+      ×
+    </button>
+
+    <h2>{{ selectedEmployee.name }}</h2>
+
+    <p>
+      {{ selectedEmployee.designation }}
+    </p>
+
+    <p>
+      📍 {{ selectedEmployee.location }}
+    </p>
+
+    <hr>
+
+    <h3>Experience</h3>
+
+    <p>
+      {{ selectedEmployee.experienceYears }} years
+    </p>
+
+    <h3>Availability</h3>
+
+    <p>
+      {{ 100 - selectedEmployee.allocationPercentage }}%
+    </p>
+
+    <h3>Skills</h3>
+
+    <div class="skills">
+
+      @for (
+        skill of selectedEmployee.skills;
+        track skill
+      ) {
+
+        <span class="skill">
+          {{ skill }}
+        </span>
+
+      }
+
+    </div>
+
+  </div>
+
+}
+
+@if (!loading && filteredEmployees.length === 0) {
+
+  <div class="no-results">
+
+    <h3>No employees found</h3>
+
+    <p>
+      Try changing your search or filters.
+    </p>
+
+  </div>
+
+}
   </div>
 
 </div>
