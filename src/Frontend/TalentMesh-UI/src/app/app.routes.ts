@@ -14,11 +14,25 @@ export const routes: Routes = [
             import('./features/dashboard/dashboard.component')
                 .then(m => m.DashboardComponent)
     },
+
     {
-        path : 'resource-pool',
-        loadComponent : () => 
+        path: 'projects',
+        loadComponent: () =>
+            import('./features/projects/projects.component')
+                .then(m => m.ProjectComponent)
+    },
+
+    {
+        path: 'projects/create',
+        loadComponent: () =>
+            import('./features/create-project/create-project')
+                .then(m => m.CreateProject)
+    },
+    {
+        path: 'resource-pool',
+        loadComponent: () =>
             import('./features/resource-pool/resource-pool')
-            .then(m => m.Resourcepool)
+                .then(m => m.Resourcepool)
         ,
     },
 
