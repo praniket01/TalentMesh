@@ -12,7 +12,7 @@
 
         public DateTime EndDate { get; set; }
 
-        public List<ProjectSkillRequirementRequestDto> SkillRequirements { get; set; }
+        public List<ProjectskillRequirementsRequestDto> skillRequirementss { get; set; }
             = [];
     }
 }

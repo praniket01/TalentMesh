@@ -14,10 +14,7 @@
   </div>
 
 
-  <form
-    [formGroup]="projectForm"
-    (ngSubmit)="submit()"
-  >
+  <form [formGroup]="projectForm" (ngSubmit)="submit()">
 
     <!-- Basic Information -->
 
@@ -31,11 +28,7 @@
           Project Name
         </label>
 
-        <input
-          type="text"
-          formControlName="name"
-          placeholder="e.g. BSE Trading Dashboard"
-        />
+        <input type="text" formControlName="name" placeholder="e.g. BSE Trading Dashboard" />
 
       </div>
 
@@ -46,11 +39,7 @@
           Client
         </label>
 
-        <input
-          type="text"
-          formControlName="clientName"
-          placeholder="e.g. BSE"
-        />
+        <input type="text" formControlName="clientName" placeholder="e.g. BSE" />
 
       </div>
 
@@ -61,11 +50,7 @@
           Description
         </label>
 
-        <textarea
-          rows="4"
-          formControlName="description"
-          placeholder="Describe the project..."
-        ></textarea>
+        <textarea rows="4" formControlName="description" placeholder="Describe the project..."></textarea>
 
       </div>
 
@@ -86,10 +71,7 @@
             Start Date
           </label>
 
-          <input
-            type="date"
-            formControlName="startDate"
-          />
+          <input type="date" formControlName="startDate" />
 
         </div>
 
@@ -100,13 +82,17 @@
             End Date
           </label>
 
-          <input
-            type="date"
-            formControlName="endDate"
-          />
+          <input type="date" formControlName="endDate" />
 
         </div>
-
+        @if (
+        projectForm.hasError('invalidDateRange') &&
+        projectForm.get('endDate')?.touched
+        ) {
+        <small class="error">
+          End date must be after the start date.
+        </small>
+        }
       </div>
 
     </section>
@@ -129,97 +115,73 @@
 
         </div>
 
-        <button
-          type="button"
-          (click)="addSkill()"
-        >
+        <button type="button" (click)="addSkill()">
           + Add Skill
         </button>
 
       </div>
 
 
-      <div formArrayName="skillRequirements">
+      <div formArrayName="skillRequirementss">
 
         @for(
-          skill of skillRequirements.controls;
-          track $index
+        skill of skillRequirementss.controls;
+        track $index
         ){
 
-          <div
-            class="skill-row"
-            [formGroupName]="$index"
-          >
+        <div class="skill-row" [formGroupName]="$index">
 
-            <input
-              type="text"
-              formControlName="skillName"
-              placeholder="Skill e.g. .NET"
-            />
+          <input type="text" formControlName="skillName" placeholder="Skill e.g. .NET" />
 
 
-            <select
-              formControlName="requiredLevel"
-            >
+          <select formControlName="requiredLevel">
 
-              <option value="Beginner">
-                Beginner
-              </option>
+            <option value="Beginner">
+              Beginner
+            </option>
 
-              <option value="Intermediate">
-                Intermediate
-              </option>
+            <option value="Intermediate">
+              Intermediate
+            </option>
 
-              <option value="Advanced">
-                Advanced
-              </option>
+            <option value="Advanced">
+              Advanced
+            </option>
 
-              <option value="Expert">
-                Expert
-              </option>
+            <option value="Expert">
+              Expert
+            </option>
 
-            </select>
+          </select>
 
 
-            <input
-              type="number"
-              min="1"
-              formControlName="requiredCount"
-              placeholder="People"
-            />
+          <input type="number" min="1" formControlName="requiredCount" placeholder="People" />
 
 
-            <button
-              type="button"
-              class="remove-button"
-              (click)="removeSkill($index)"
-            >
-              Remove
-            </button>
+          <button type="button" class="remove-button" (click)="removeSkill($index)">
+            Remove
+          </button>
 
-          </div>
+        </div>
 
         }
 
       </div>
 
 
-      @if(skillRequirements.length === 0){
+      @if(skillRequirementss.length === 0){
 
-        <div class="empty-skills">
+      <div class="empty-skills">
 
-          <p>
-            No skills added yet.
-          </p>
+        <p>
+          No skills added yet.
+        </p>
 
-          <button
-            type="button"
-            (click)="addSkill()"
-          >
-            + Add your first skill
-          </button>
+        <button type="button" (click)="addSkill()">
+          + Add your first skill
+        </button>
 
-        </div>
+      </div>
 
       }
 
@@ -228,9 +190,9 @@
 
     @if(error){
 
-      <div class="error">
-        {{ error }}
-      </div>
+    <div class="error">
+      {{ error }}
+    </div>
 
     }
 
@@ -239,23 +201,17 @@
 
     <div class="form-actions">
 
-      <button
-        type="button"
-        (click)="cancel()"
-      >
+      <button type="button" (click)="cancel()">
         Cancel
       </button>
 
 
-      <button
-        type="submit"
-        [disabled]="submitting"
-      >
+      <button type="submit" [disabled]="submitting">
 
         @if(submitting){
-          Creating...
+        Creating...
         } @else {
-          Create Project
+        Create Project
         }
 
       </button>

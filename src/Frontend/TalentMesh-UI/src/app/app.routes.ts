@@ -28,6 +28,14 @@ export const routes: Routes = [
             import('./features/create-project/create-project')
                 .then(m => m.CreateProject)
     },
+
+    {
+        path: 'projects/:id',
+        loadComponent: () =>
+            import('./features/project-details/project-details')
+                .then(m => m.ProjectDetails)
+    },
+
     {
         path: 'resource-pool',
         loadComponent: () =>

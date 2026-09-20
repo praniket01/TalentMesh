@@ -1,5 +1,5 @@
 
-export interface ProjectSkillRequirement {
+export interface ProjectskillRequirements {
     id : string;
     skillName : string;
     requiredLevel : string;
@@ -14,5 +14,5 @@ export interface Project {
     endDate:  string;
     clientName : string;
     status : string;
-    skillRequirement : ProjectSkillRequirement[];
+    skillRequirements : ProjectskillRequirements[];
 }

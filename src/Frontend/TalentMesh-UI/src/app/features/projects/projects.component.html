@@ -28,7 +28,8 @@
 
         @for(project of projects(); track project.id){
 
-        <div class="project-card">
+        <div class="project-card" 
+        [routerLink]="['/projects', project.id]">
 
             <div class="project-header">
 
@@ -68,7 +69,7 @@
 
             <div class="skills">
 
-                @for(requirement of project.skillRequirement; track requirement.id){
+                @for(requirement of project.skillRequirements; track requirement.id){
 
                 <span class="skill">
 

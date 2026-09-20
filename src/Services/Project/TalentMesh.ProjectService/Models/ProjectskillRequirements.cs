@@ -1,6 +1,6 @@
 ﻿namespace TalentMesh.ProjectService.Models
 {
-    public class ProjectSkillRequirement
+    public class ProjectskillRequirements
     {
         public Guid Id { get; set; }
 

@@ -1,5 +1,5 @@
 
-export interface ProjectSkillRequirementRequest {
+export interface ProjectskillRequirementsRequest {
     skillName: string;
     requiredLevel: string;
     requiredCount: number;
@@ -11,5 +11,5 @@ export interface CreateProjectRequest {
     clientName: string;
     startDate: string;
     endDate: string;
-    skillRequirements: ProjectSkillRequirementRequest[];
+    skillRequirementss: ProjectskillRequirementsRequest[];
 }

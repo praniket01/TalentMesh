@@ -27,9 +27,9 @@ namespace TalentMesh.ProjectService.Services.Impl
                 CreatedBy = userId
             };
 
-            foreach(var requirement in request.SkillRequirements)
+            foreach(var requirement in request.skillRequirementss)
             {
-                project.SkillRequirements.Add(new ProjectSkillRequirement
+                project.skillRequirementss.Add(new ProjectskillRequirements
                 {
                     Id = Guid.NewGuid(),
                     SkillName = requirement.SkillName,
@@ -47,7 +47,7 @@ namespace TalentMesh.ProjectService.Services.Impl
         public async Task<List<ProjectDto>> GetAllAsync()
         {
             return await _context.Projects
-             .Include(x => x.SkillRequirements)
+             .Include(x => x.skillRequirementss)
              .Select(x => new ProjectDto
              {
                  Id = x.Id,
@@ -58,8 +58,8 @@ namespace TalentMesh.ProjectService.Services.Impl
                  EndDate = x.EndDate,
                  Status = x.Status,
 
-                 SkillRequirements = x.SkillRequirements
-                     .Select(skill => new ProjectSkillRequirementDto
+                 skillRequirementss = x.skillRequirementss
+                     .Select(skill => new ProjectskillRequirementsDto
                      {
                          Id = skill.Id,
                          SkillName = skill.SkillName,
@@ -74,7 +74,7 @@ namespace TalentMesh.ProjectService.Services.Impl
         public async Task<ProjectDto?> GetByIdAsync(Guid id)
         {
             return await _context.Projects
-            .Include(x => x.SkillRequirements)
+            .Include(x => x.skillRequirementss)
             .Where(x => x.Id == id)
             .Select(x => new ProjectDto
             {
@@ -86,8 +86,8 @@ namespace TalentMesh.ProjectService.Services.Impl
                 EndDate = x.EndDate,
                 Status = x.Status,
 
-                SkillRequirements = x.SkillRequirements
-                    .Select(skill => new ProjectSkillRequirementDto
+                skillRequirementss = x.skillRequirementss
+                    .Select(skill => new ProjectskillRequirementsDto
                     {
                         Id = skill.Id,
                         SkillName = skill.SkillName,

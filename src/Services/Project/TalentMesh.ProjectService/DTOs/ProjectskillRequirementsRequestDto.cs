@@ -1,6 +1,6 @@
 ﻿namespace TalentMesh.ProjectService.DTOs
 {
-    public class ProjectSkillRequirementRequestDto
+    public class ProjectskillRequirementsRequestDto
     {
         public string SkillName { get; set; } = string.Empty;
 

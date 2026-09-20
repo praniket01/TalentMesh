@@ -1,11 +1,12 @@
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { ProjectService } from "../../core/services/project.service";
 import { Project } from "../../models/project";
-import { Router } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 
 @Component({
     selector: 'app-projects',
     templateUrl: './projects.component.html',
+    imports : [RouterLink],
     styleUrl: './projects.component.css',
 })
 export class ProjectComponent implements OnInit {

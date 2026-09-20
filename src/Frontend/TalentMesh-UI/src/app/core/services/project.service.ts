@@ -21,7 +21,7 @@ export class ProjectService{
                         
     }
 
-    getProjectbyId(id : number) : Observable<Project> {
+    getProjectbyId(id : string) : Observable<Project> {
         return this.http.get<Project>(`${environment.apiBaseUrl}/project/${id}`);
     }
 

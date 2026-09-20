@@ -1,9 +1,12 @@
 import { Component, inject } from '@angular/core';
 import {
+    AbstractControl,
     FormArray,
     FormBuilder,
     FormGroup,
     ReactiveFormsModule,
+    ValidationErrors,
+    ValidatorFn,
     Validators
 } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -16,7 +19,7 @@ type SkillForm = FormGroup<{
     requiredCount: ReturnType<FormBuilder['control']>;
 }>;
 
-interface SkillRequirementForm {
+interface skillRequirementsForm {
     skillName: string;
     requiredLevel: string;
     requiredCount: number;
@@ -67,13 +70,19 @@ export class CreateProject {
             Validators.required
         ],
 
-        skillRequirements: this.fb.array([])
+        skillRequirementss: this.fb.array([
 
-    });
+        ])
 
-    get skillRequirements(): FormArray<FormGroup> {
+    },
+        {
+            validators: this.dateRangeValidator()
+        }
+    );
+
+    get skillRequirementss(): FormArray<FormGroup> {
         return this.projectForm.get(
-            'skillRequirements'
+            'skillRequirementss'
         ) as FormArray<FormGroup>;
     }
 
@@ -101,13 +110,31 @@ export class CreateProject {
 
         });
 
-        this.skillRequirements.push(skill);
+        this.skillRequirementss.push(skill);
     }
 
     removeSkill(index: number): void {
-        this.skillRequirements.removeAt(index);
+        this.skillRequirementss.removeAt(index);
     }
+    dateRangeValidator(): ValidatorFn {
+        return (control: AbstractControl): ValidationErrors | null => {
 
+            const startDate = control.get('startDate')?.value;
+            const endDate = control.get('endDate')?.value;
+
+            if (!startDate || !endDate) {
+                return null;
+            }
+
+            if (new Date(endDate) <= new Date(startDate)) {
+                return {
+                    invalidDateRange: true
+                };
+            }
+
+            return null;
+        };
+    }
     submit(): void {
 
         if (this.projectForm.invalid) {
@@ -117,13 +144,14 @@ export class CreateProject {
             return;
         }
 
+
         this.submitting = true;
         this.error = '';
 
         const formValue =
             this.projectForm.getRawValue();
         const skills =
-            formValue.skillRequirements as SkillRequirementForm[];
+            formValue.skillRequirementss as skillRequirementsForm[];
 
         const request = {
             name: formValue.name!,
@@ -132,7 +160,7 @@ export class CreateProject {
             startDate: `${formValue.startDate}T00:00:00Z`,
             endDate: `${formValue.endDate}T00:00:00Z`,
 
-            skillRequirements:
+            skillRequirementss:
                 skills.map(skill => ({
                     skillName: skill.skillName!,
                     requiredLevel: skill.requiredLevel!,
