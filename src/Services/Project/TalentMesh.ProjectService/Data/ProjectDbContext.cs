@@ -12,15 +12,15 @@ namespace TalentMesh.ProjectService.Data
 
         public DbSet<Project> Projects => Set<Project>();
 
-        public DbSet<ProjectSkillRequirement> projectSkillRequirements => Set<ProjectSkillRequirement>();
+        public DbSet<ProjectskillRequirements> projectskillRequirementss => Set<ProjectskillRequirements>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<ProjectSkillRequirement>()
+            modelBuilder.Entity<ProjectskillRequirements>()
                 .HasOne(x => x.Project)
-                .WithMany(x => x.SkillRequirements)
+                .WithMany(x => x.skillRequirementss)
                 .HasForeignKey(x => x.ProjectId);
 
             modelBuilder.Entity<Project>()
@@ -32,12 +32,12 @@ namespace TalentMesh.ProjectService.Data
           .Property(x => x.ClientName)
           .HasMaxLength(200);
 
-            modelBuilder.Entity<ProjectSkillRequirement>()
+            modelBuilder.Entity<ProjectskillRequirements>()
                 .Property(x => x.SkillName)
                 .HasMaxLength(100)
                 .IsRequired();
 
-            modelBuilder.Entity<ProjectSkillRequirement>()
+            modelBuilder.Entity<ProjectskillRequirements>()
                 .Property(x => x.RequiredLevel)
                 .HasMaxLength(50)
                 .IsRequired();

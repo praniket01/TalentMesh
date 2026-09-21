@@ -16,7 +16,7 @@
 
         public string Status { get; set; } = string.Empty;
 
-        public List<ProjectSkillRequirementDto> SkillRequirements { get; set; }
+        public List<ProjectskillRequirementsDto> skillRequirementss { get; set; }
             = [];
     }
 }

@@ -1,0 +1,223 @@
+<div class="create-project-page">
+
+  <div class="page-header">
+
+    <div>
+      <h1>Create Project</h1>
+
+      <p>
+        Define the project and the skills required
+        to deliver it.
+      </p>
+    </div>
+
+  </div>
+
+
+  <form [formGroup]="projectForm" (ngSubmit)="submit()">
+
+    <!-- Basic Information -->
+
+    <section class="form-section">
+
+      <h2>Project Information</h2>
+
+      <div class="form-group">
+
+        <label>
+          Project Name
+        </label>
+
+        <input type="text" formControlName="name" placeholder="e.g. BSE Trading Dashboard" />
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Client
+        </label>
+
+        <input type="text" formControlName="clientName" placeholder="e.g. BSE" />
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Description
+        </label>
+
+        <textarea rows="4" formControlName="description" placeholder="Describe the project..."></textarea>
+
+      </div>
+
+    </section>
+
+
+    <!-- Project Dates -->
+
+    <section class="form-section">
+
+      <h2>Project Timeline</h2>
+
+      <div class="date-grid">
+
+        <div class="form-group">
+
+          <label>
+            Start Date
+          </label>
+
+          <input type="date" formControlName="startDate" />
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            End Date
+          </label>
+
+          <input type="date" formControlName="endDate" />
+
+        </div>
+        @if (
+        projectForm.hasError('invalidDateRange') &&
+        projectForm.get('endDate')?.touched
+        ) {
+        <small class="error">
+          End date must be after the start date.
+        </small>
+        }
+      </div>
+
+    </section>
+
+
+    <!-- Skill Requirements -->
+
+    <section class="form-section">
+
+      <div class="section-header">
+
+        <div>
+
+          <h2>Required Skills</h2>
+
+          <p>
+            Define the skills and experience
+            required for this project.
+          </p>
+
+        </div>
+
+        <button type="button" (click)="addSkill()">
+          + Add Skill
+        </button>
+
+      </div>
+
+
+      <div formArrayName="skillRequirementss">
+
+        @for(
+        skill of skillRequirementss.controls;
+        track $index
+        ){
+
+        <div class="skill-row" [formGroupName]="$index">
+
+          <input type="text" formControlName="skillName" placeholder="Skill e.g. .NET" />
+
+
+          <select formControlName="requiredLevel">
+
+            <option value="Beginner">
+              Beginner
+            </option>
+
+            <option value="Intermediate">
+              Intermediate
+            </option>
+
+            <option value="Advanced">
+              Advanced
+            </option>
+
+            <option value="Expert">
+              Expert
+            </option>
+
+          </select>
+
+
+          <input type="number" min="1" formControlName="requiredCount" placeholder="People" />
+
+
+          <button type="button" class="remove-button" (click)="removeSkill($index)">
+            Remove
+          </button>
+
+        </div>
+
+        }
+
+      </div>
+
+
+      @if(skillRequirementss.length === 0){
+
+      <div class="empty-skills">
+
+        <p>
+          No skills added yet.
+        </p>
+
+        <button type="button" (click)="addSkill()">
+          + Add your first skill
+        </button>
+
+      </div>
+
+      }
+
+    </section>
+
+
+    @if(error){
+
+    <div class="error">
+      {{ error }}
+    </div>
+
+    }
+
+
+    <!-- Actions -->
+
+    <div class="form-actions">
+
+      <button type="button" (click)="cancel()">
+        Cancel
+      </button>
+
+
+      <button type="submit" [disabled]="submitting">
+
+        @if(submitting){
+        Creating...
+        } @else {
+        Create Project
+        }
+
+      </button>
+
+    </div>
+
+  </form>
+
+</div>

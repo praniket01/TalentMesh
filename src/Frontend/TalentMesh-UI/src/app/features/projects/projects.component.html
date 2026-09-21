@@ -1,0 +1,102 @@
+<div class="projects-page">
+
+    <div class="page-header">
+
+        <div>
+            <h1>Projects</h1>
+
+            <p>
+                Manage projects and their resource requirements.
+            </p>
+        </div>
+
+        <button (click)="createProject()">
+            + Create Project
+        </button>
+
+    </div>
+
+    @if(loading()){
+    <p>Loading projects...</p>
+    }
+
+    @if(error()){
+    <p>{{ error }}</p>
+    }
+
+    <div class="project-grid">
+
+        @for(project of projects(); track project.id){
+
+        <div class="project-card" 
+        [routerLink]="['/projects', project.id]">
+
+            <div class="project-header">
+
+                <div>
+                    <h2>{{ project.name }}</h2>
+
+                    <p>
+                        {{ project.clientName }}
+                    </p>
+                </div>
+
+                <span>
+                    {{ project.status }}
+                </span>
+
+            </div>
+
+            <p>
+                {{ project.description }}
+            </p>
+
+            <div class="project-dates">
+
+                <span>
+                    Start:
+                    {{ project.startDate }}
+                </span>
+
+                <span>
+                    End:
+                    {{ project.endDate }}
+                </span>
+
+            </div>
+
+            <h3>Required Skills</h3>
+
+            <div class="skills">
+
+                @for(requirement of project.skillRequirements; track requirement.id){
+
+                <span class="skill">
+
+                    {{ requirement.skillName }}
+
+                    ·
+
+                    {{ requirement.requiredLevel }}
+
+                    ·
+
+                    {{ requirement.requiredCount }}
+
+                </span>
+
+                }
+
+            </div>
+
+            <button>
+                View Project
+            </button>
+
+        </div>
+
+        }
+
+    </div>
+
+</div>

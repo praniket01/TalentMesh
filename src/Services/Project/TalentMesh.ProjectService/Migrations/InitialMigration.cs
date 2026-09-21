@@ -63,7 +63,7 @@ namespace TalentMesh.ProjectService.Migrations
                     b.ToTable("Projects");
                 });
 
-            modelBuilder.Entity("TalentMesh.ProjectService.Models.ProjectSkillRequirement", b =>
+            modelBuilder.Entity("TalentMesh.ProjectService.Models.ProjectskillRequirements", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -89,13 +89,13 @@ namespace TalentMesh.ProjectService.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("projectSkillRequirements");
+                    b.ToTable("projectskillRequirementss");
                 });
 
-            modelBuilder.Entity("TalentMesh.ProjectService.Models.ProjectSkillRequirement", b =>
+            modelBuilder.Entity("TalentMesh.ProjectService.Models.ProjectskillRequirements", b =>
                 {
                     b.HasOne("TalentMesh.ProjectService.Models.Project", "Project")
-                        .WithMany("SkillRequirements")
+                        .WithMany("skillRequirementss")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -105,7 +105,7 @@ namespace TalentMesh.ProjectService.Migrations
 
             modelBuilder.Entity("TalentMesh.ProjectService.Models.Project", b =>
                 {
-                    b.Navigation("SkillRequirements");
+                    b.Navigation("skillRequirementss");
                 });
 #pragma warning restore 612, 618
         }

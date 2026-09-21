@@ -1,0 +1,142 @@
+<div class="details-page">
+
+  @if (isLoading()) {
+
+    <div class="loading">
+      Loading project...
+    </div>
+
+  } @else if (error()) {
+
+    <div class="error">
+      {{ error() }}
+    </div>
+
+    <button (click)="goBack()">
+      Back to Projects
+    </button>
+
+  } @else if (project(); as currentProject) {
+
+    <div class="page-header">
+
+      <button
+        class="back-button"
+        (click)="goBack()"
+      >
+        ← Back to Projects
+      </button>
+
+      <span class="status">
+        {{ currentProject.status }}
+      </span>
+
+    </div>
+
+    <div class="project-header">
+
+      <div>
+        <h1>{{ currentProject.name }}</h1>
+
+        <p class="client">
+          Client: {{ currentProject.clientName }}
+        </p>
+      </div>
+
+    </div>
+
+    <section class="project-section">
+
+      <h2>Description</h2>
+
+      <p>
+        {{ currentProject.description }}
+      </p>
+
+    </section>
+
+    <section class="project-section">
+
+      <h2>Project Timeline</h2>
+
+      <div class="timeline">
+
+        <div>
+          <span>Start Date</span>
+          <strong>
+            {{ currentProject.startDate }}
+          </strong>
+        </div>
+
+        <div>
+          <span>End Date</span>
+          <strong>
+            {{ currentProject.endDate }}
+          </strong>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="project-section">
+
+      <div class="section-header">
+
+        <div>
+          <h2>Required Skills</h2>
+
+          <p>
+            Skills required for this project
+          </p>
+        </div>
+
+        <span class="requirement-count">
+          {{ currentProject.skillRequirements.length }}
+          Skills
+        </span>
+
+      </div>
+
+      <div class="requirements">
+
+        @for (
+          requirement of currentProject.skillRequirements;
+          track requirement.id
+        ) {
+
+          <div class="requirement-card">
+
+            <div>
+              <h3>
+                {{ requirement.skillName }}
+              </h3>
+
+              <span>
+                {{ requirement.requiredLevel }}
+              </span>
+            </div>
+
+            <div class="required-count">
+
+              <strong>
+                {{ requirement.requiredCount }}
+              </strong>
+
+              <span>
+                Required
+              </span>
+
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+    </section>
+
+  }
+
+</div>

@@ -1,6 +1,6 @@
 ﻿namespace TalentMesh.ProjectService.DTOs
 {
-    public class ProjectSkillRequirementDto
+    public class ProjectskillRequirementsDto
     {
         public Guid Id { get; set; }
 

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TalentMesh.EmployeeService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+af10a9e90c413602c78f1c3eaaaa64fc0b0b7637")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0394a8038ec3b084ca782d20613fa6400a42d4e8")]
 [assembly: System.Reflection.AssemblyProductAttribute("TalentMesh.EmployeeService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TalentMesh.EmployeeService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
