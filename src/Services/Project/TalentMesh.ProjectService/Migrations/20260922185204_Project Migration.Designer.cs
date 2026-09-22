@@ -12,8 +12,8 @@ using TalentMesh.ProjectService.Data;
 namespace TalentMesh.ProjectService.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20260919183407_Initial Migration")]
-    partial class InitialMigration
+    [Migration("20260922185204_Project Migration")]
+    partial class ProjectMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -89,13 +89,13 @@ namespace TalentMesh.ProjectService.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("projectskillRequirementss");
+                    b.ToTable("projectskillRequirements");
                 });
 
             modelBuilder.Entity("TalentMesh.ProjectService.Models.ProjectskillRequirements", b =>
                 {
                     b.HasOne("TalentMesh.ProjectService.Models.Project", "Project")
-                        .WithMany("skillRequirementss")
+                        .WithMany("skillRequirements")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -105,7 +105,7 @@ namespace TalentMesh.ProjectService.Migrations
 
             modelBuilder.Entity("TalentMesh.ProjectService.Models.Project", b =>
                 {
-                    b.Navigation("skillRequirementss");
+                    b.Navigation("skillRequirements");
                 });
 #pragma warning restore 612, 618
         }

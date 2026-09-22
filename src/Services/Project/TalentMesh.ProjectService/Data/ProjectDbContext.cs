@@ -12,7 +12,7 @@ namespace TalentMesh.ProjectService.Data
 
         public DbSet<Project> Projects => Set<Project>();
 
-        public DbSet<ProjectskillRequirements> projectskillRequirementss => Set<ProjectskillRequirements>();
+        public DbSet<ProjectskillRequirements> projectskillRequirements => Set<ProjectskillRequirements>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -20,7 +20,7 @@ namespace TalentMesh.ProjectService.Data
 
             modelBuilder.Entity<ProjectskillRequirements>()
                 .HasOne(x => x.Project)
-                .WithMany(x => x.skillRequirementss)
+                .WithMany(x => x.skillRequirements)
                 .HasForeignKey(x => x.ProjectId);
 
             modelBuilder.Entity<Project>()

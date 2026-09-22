@@ -18,7 +18,7 @@
 
         public Guid CreatedBy { get; set; }
 
-        public ICollection<ProjectskillRequirements> skillRequirementss { get; set; }
+        public ICollection<ProjectskillRequirements> skillRequirements { get; set; }
             = new List<ProjectskillRequirements>();
     }
 }

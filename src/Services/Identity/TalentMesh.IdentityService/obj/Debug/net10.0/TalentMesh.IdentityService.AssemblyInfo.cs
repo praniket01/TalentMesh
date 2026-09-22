@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TalentMesh.IdentityService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0394a8038ec3b084ca782d20613fa6400a42d4e8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5870c387f47b6b0ae69c5d5ae7298dd57bb228b6")]
 [assembly: System.Reflection.AssemblyProductAttribute("TalentMesh.IdentityService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TalentMesh.IdentityService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

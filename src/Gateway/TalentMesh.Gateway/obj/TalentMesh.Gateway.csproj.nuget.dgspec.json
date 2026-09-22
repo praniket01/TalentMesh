@@ -1,37 +1,43 @@
 {
   "format": 1,
   "restore": {
-    "/Users/praniketbodke/projects/TalentMesh/src/Gateway/TalentMesh.Gateway/TalentMesh.Gateway.csproj": {}
+    "D:\\Projects\\TalentMesh\\TalentMesh\\src\\Gateway\\TalentMesh.Gateway\\TalentMesh.Gateway.csproj": {}
   },
   "projects": {
-    "/Users/praniketbodke/projects/TalentMesh/src/Gateway/TalentMesh.Gateway/TalentMesh.Gateway.csproj": {
+    "D:\\Projects\\TalentMesh\\TalentMesh\\src\\Gateway\\TalentMesh.Gateway\\TalentMesh.Gateway.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/praniketbodke/projects/TalentMesh/src/Gateway/TalentMesh.Gateway/TalentMesh.Gateway.csproj",
+        "projectUniqueName": "D:\\Projects\\TalentMesh\\TalentMesh\\src\\Gateway\\TalentMesh.Gateway\\TalentMesh.Gateway.csproj",
         "projectName": "TalentMesh.Gateway",
-        "projectPath": "/Users/praniketbodke/projects/TalentMesh/src/Gateway/TalentMesh.Gateway/TalentMesh.Gateway.csproj",
-        "packagesPath": "/Users/praniketbodke/.nuget/packages/",
-        "outputPath": "/Users/praniketbodke/projects/TalentMesh/src/Gateway/TalentMesh.Gateway/obj/",
+        "projectPath": "D:\\Projects\\TalentMesh\\TalentMesh\\src\\Gateway\\TalentMesh.Gateway\\TalentMesh.Gateway.csproj",
+        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\TalentMesh\\TalentMesh\\src\\Gateway\\TalentMesh.Gateway\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/praniketbodke/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net10.0": {
+            "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "/Users/praniketbodke/projects/TalentMesh/src/Services/Employee/TalentMesh.EmployeeService/TalentMesh.EmployeeService.csproj": {
-                "projectPath": "/Users/praniketbodke/projects/TalentMesh/src/Services/Employee/TalentMesh.EmployeeService/TalentMesh.EmployeeService.csproj"
+              "D:\\Projects\\TalentMesh\\TalentMesh\\src\\Services\\Employee\\TalentMesh.EmployeeService\\TalentMesh.EmployeeService.csproj": {
+                "projectPath": "D:\\Projects\\TalentMesh\\TalentMesh\\src\\Services\\Employee\\TalentMesh.EmployeeService\\TalentMesh.EmployeeService.csproj"
               },
-              "/Users/praniketbodke/projects/TalentMesh/src/Services/Identity/TalentMesh.IdentityService/TalentMesh.IdentityService.csproj": {
-                "projectPath": "/Users/praniketbodke/projects/TalentMesh/src/Services/Identity/TalentMesh.IdentityService/TalentMesh.IdentityService.csproj"
+              "D:\\Projects\\TalentMesh\\TalentMesh\\src\\Services\\Identity\\TalentMesh.IdentityService\\TalentMesh.IdentityService.csproj": {
+                "projectPath": "D:\\Projects\\TalentMesh\\TalentMesh\\src\\Services\\Identity\\TalentMesh.IdentityService\\TalentMesh.IdentityService.csproj"
               }
             }
           }
@@ -46,10 +52,11 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net10.0": {
+          "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.Design": {
@@ -82,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.202/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
@@ -500,27 +507,33 @@
         }
       }
     },
-    "/Users/praniketbodke/projects/TalentMesh/src/Services/Employee/TalentMesh.EmployeeService/TalentMesh.EmployeeService.csproj": {
+    "D:\\Projects\\TalentMesh\\TalentMesh\\src\\Services\\Employee\\TalentMesh.EmployeeService\\TalentMesh.EmployeeService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/praniketbodke/projects/TalentMesh/src/Services/Employee/TalentMesh.EmployeeService/TalentMesh.EmployeeService.csproj",
+        "projectUniqueName": "D:\\Projects\\TalentMesh\\TalentMesh\\src\\Services\\Employee\\TalentMesh.EmployeeService\\TalentMesh.EmployeeService.csproj",
         "projectName": "TalentMesh.EmployeeService",
-        "projectPath": "/Users/praniketbodke/projects/TalentMesh/src/Services/Employee/TalentMesh.EmployeeService/TalentMesh.EmployeeService.csproj",
-        "packagesPath": "/Users/praniketbodke/.nuget/packages/",
-        "outputPath": "/Users/praniketbodke/projects/TalentMesh/src/Services/Employee/TalentMesh.EmployeeService/obj/",
+        "projectPath": "D:\\Projects\\TalentMesh\\TalentMesh\\src\\Services\\Employee\\TalentMesh.EmployeeService\\TalentMesh.EmployeeService.csproj",
+        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\TalentMesh\\TalentMesh\\src\\Services\\Employee\\TalentMesh.EmployeeService\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/praniketbodke/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net10.0": {
+            "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {}
           }
@@ -535,10 +548,11 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net10.0": {
+          "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
@@ -583,7 +597,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.202/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
@@ -1001,27 +1015,33 @@
         }
       }
     },
-    "/Users/praniketbodke/projects/TalentMesh/src/Services/Identity/TalentMesh.IdentityService/TalentMesh.IdentityService.csproj": {
+    "D:\\Projects\\TalentMesh\\TalentMesh\\src\\Services\\Identity\\TalentMesh.IdentityService\\TalentMesh.IdentityService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/praniketbodke/projects/TalentMesh/src/Services/Identity/TalentMesh.IdentityService/TalentMesh.IdentityService.csproj",
+        "projectUniqueName": "D:\\Projects\\TalentMesh\\TalentMesh\\src\\Services\\Identity\\TalentMesh.IdentityService\\TalentMesh.IdentityService.csproj",
         "projectName": "TalentMesh.IdentityService",
-        "projectPath": "/Users/praniketbodke/projects/TalentMesh/src/Services/Identity/TalentMesh.IdentityService/TalentMesh.IdentityService.csproj",
-        "packagesPath": "/Users/praniketbodke/.nuget/packages/",
-        "outputPath": "/Users/praniketbodke/projects/TalentMesh/src/Services/Identity/TalentMesh.IdentityService/obj/",
+        "projectPath": "D:\\Projects\\TalentMesh\\TalentMesh\\src\\Services\\Identity\\TalentMesh.IdentityService\\TalentMesh.IdentityService.csproj",
+        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\TalentMesh\\TalentMesh\\src\\Services\\Identity\\TalentMesh.IdentityService\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/praniketbodke/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net10.0": {
+            "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {}
           }
@@ -1036,10 +1056,11 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net10.0": {
+          "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
             "BCrypt.Net-Next": {
@@ -1106,7 +1127,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.202/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

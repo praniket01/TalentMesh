@@ -27,9 +27,9 @@ namespace TalentMesh.ProjectService.Services.Impl
                 CreatedBy = userId
             };
 
-            foreach(var requirement in request.skillRequirementss)
+            foreach(var requirement in request.skillRequirements)
             {
-                project.skillRequirementss.Add(new ProjectskillRequirements
+                project.skillRequirements.Add(new ProjectskillRequirements
                 {
                     Id = Guid.NewGuid(),
                     SkillName = requirement.SkillName,
@@ -47,7 +47,7 @@ namespace TalentMesh.ProjectService.Services.Impl
         public async Task<List<ProjectDto>> GetAllAsync()
         {
             return await _context.Projects
-             .Include(x => x.skillRequirementss)
+             .Include(x => x.skillRequirements)
              .Select(x => new ProjectDto
              {
                  Id = x.Id,
@@ -58,7 +58,7 @@ namespace TalentMesh.ProjectService.Services.Impl
                  EndDate = x.EndDate,
                  Status = x.Status,
 
-                 skillRequirementss = x.skillRequirementss
+                 skillRequirements = x.skillRequirements
                      .Select(skill => new ProjectskillRequirementsDto
                      {
                          Id = skill.Id,
@@ -74,7 +74,7 @@ namespace TalentMesh.ProjectService.Services.Impl
         public async Task<ProjectDto?> GetByIdAsync(Guid id)
         {
             return await _context.Projects
-            .Include(x => x.skillRequirementss)
+            .Include(x => x.skillRequirements)
             .Where(x => x.Id == id)
             .Select(x => new ProjectDto
             {
@@ -86,7 +86,7 @@ namespace TalentMesh.ProjectService.Services.Impl
                 EndDate = x.EndDate,
                 Status = x.Status,
 
-                skillRequirementss = x.skillRequirementss
+                skillRequirements = x.skillRequirements
                     .Select(skill => new ProjectskillRequirementsDto
                     {
                         Id = skill.Id,

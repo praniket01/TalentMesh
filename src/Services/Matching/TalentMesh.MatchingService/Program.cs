@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using TalentMesh.MatchingService.Clients;
+using TalentMesh.ProjectService.Clients;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,7 +32,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
-builder.Services.AddHttpClient();
+builder.Services.AddHttpClient<ProjectServiceClient>();
+builder.Services.AddHttpClient<EmployeeServiceClient>();
+
 
 var app = builder.Build();
 
