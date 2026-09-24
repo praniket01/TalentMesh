@@ -1,4 +1,7 @@
-﻿public class EmployeeDto
+﻿using TalentMesh.EmployeeService.DTOs;
+using TalentMesh.EmployeeService.Models;
+
+public class EmployeeDto
 {
     public Guid Id { get; set; }
 
@@ -12,5 +15,5 @@
 
     public int AllocationPercentage { get; set; }
 
-    public List<string> Skills { get; set; } = [];
+    public List<EmployeeSkillDto> Skills { get; set; } = [];
 }

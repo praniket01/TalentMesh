@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using TalentMesh.MatchingService.Clients;
+using TalentMesh.MatchingService.Servicies;
 using TalentMesh.ProjectService.Clients;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,6 +36,8 @@ builder.Services.AddAuthorization();
 builder.Services.AddHttpClient<ProjectServiceClient>();
 builder.Services.AddHttpClient<EmployeeServiceClient>();
 
+builder.Services.AddScoped<MatchingScoreCalculator>();
+builder.Services.AddScoped<MatchingService>();
 
 var app = builder.Build();
 

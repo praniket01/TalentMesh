@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TalentMesh.MatchingService.Clients;
+using TalentMesh.MatchingService.Servicies;
 using TalentMesh.ProjectService.Clients;
 
 namespace TalentMesh.MatchingService.Controllers
@@ -13,13 +14,15 @@ namespace TalentMesh.MatchingService.Controllers
     {
         private readonly ProjectServiceClient _projectClient;
         private readonly EmployeeServiceClient _employeeClient;
+        private readonly Servicies.MatchingService _matchingService;
 
         public MatchingController(
         ProjectServiceClient projectClient,
-        EmployeeServiceClient employeeClient)
+        EmployeeServiceClient employeeClient , MatchingService.Servicies.MatchingService matchingService)
         {
             _projectClient = projectClient;
             _employeeClient = employeeClient;
+            _matchingService = matchingService;
         }
 
         [HttpGet("health")]
@@ -32,45 +35,23 @@ namespace TalentMesh.MatchingService.Controllers
             });
         }
 
-        [HttpGet("test/{projectId:guid}")]
+        [HttpGet("projects/{projectId:guid}")]
         public async Task<IActionResult> TestCommunication(
         Guid projectId)
         {
             var token = GetToken();
 
-            if (token == null)
-                return Unauthorized();
+            if (token == null) return Unauthorized();
 
-            var project =
-                await _projectClient.GetProjectAsync(
-                    projectId,
-                    token);
-
-            if (project == null)
+            try
             {
-                return NotFound(
-                    "Project could not be retrieved.");
+                var matches = await _matchingService.FindMatchesAsync(projectId, token);
+                return Ok(matches);
             }
-
-            var employees =
-                await _employeeClient.GetEmployeesAsync(
-                    token);
-
-            return Ok(new
+            catch
             {
-                project = project.Name,
-                requirements = project.SkillRequirements,
-                employeeCount = employees.Count,
-                employees = employees.Select(x => new
-                {
-                    x.Id,
-                    x.Name,
-                    x.Designation,
-                    x.ExperienceYears,
-                    x.AllocationPercentage,
-                    x.Skills
-                })
-            });
+                return NotFound("Project not found.");  
+            }
         }
 
         private string? GetToken()

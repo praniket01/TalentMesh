@@ -4,9 +4,7 @@ public class EmployeeSkillDto
 {
     public Guid Id { get; set; }
 
-    public Guid SkillId { get; set; }
-
-    public string SkillName { get; set; } = string.Empty;
+    public SkillDto Skill { get; set; } = null!;
 
     public string Level { get; set; } = string.Empty;
 

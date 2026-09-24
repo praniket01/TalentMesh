@@ -6,10 +6,6 @@ public class EmployeeDto
 
     public string Name { get; set; } = string.Empty;
 
-    public string Email { get; set; } = string.Empty;
-
-    public string Department { get; set; } = string.Empty;
-
     public string Designation { get; set; } = string.Empty;
 
     public decimal ExperienceYears { get; set; }
@@ -19,4 +15,5 @@ public class EmployeeDto
     public int AllocationPercentage { get; set; }
 
     public List<EmployeeSkillDto> Skills { get; set; } = [];
+
 }

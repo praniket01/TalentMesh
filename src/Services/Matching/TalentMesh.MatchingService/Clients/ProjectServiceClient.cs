@@ -29,19 +29,15 @@ namespace TalentMesh.ProjectService.Clients
                 token);
 
             var response =
-            await _httpClient.SendAsync(request);
-
-            var response =
            await _httpClient.SendAsync(request);
 
             if (!response.IsSuccessStatusCode)
             {
-                return [];
+                return null;
             }
 
             return await response.Content
-                .ReadFromJsonAsync<List<EmployeeDto>>()
-                ?? [];
+                .ReadFromJsonAsync<ProjectDto>();
         }
     }
 }

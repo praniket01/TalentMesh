@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TalentMesh.EmployeeService.Data;
+using TalentMesh.EmployeeService.DTOs;
 
 namespace TalentMesh.EmployeeService.Services
 {
@@ -14,7 +15,7 @@ namespace TalentMesh.EmployeeService.Services
 
         public Task<List<EmployeeDto>> GetAllAsync()
         {
-            return _context.Employees.Include(x => x.Skills).ThenInclude(x => x.Skill).Select(
+            return _context.Employees.Select(
                 x =>new EmployeeDto
                 {
                     Id = x.Id,
@@ -23,7 +24,16 @@ namespace TalentMesh.EmployeeService.Services
                     ExperienceYears = x.ExperienceYears,
                     Location = x.Location,
                     AllocationPercentage = x.AllocationPercentage,
-                    Skills = x.Skills.Select(s => s.Skill.Name).ToList()
+                    Skills = x.Skills
+                                .Select(es => new EmployeeSkillDto
+                                {
+                                    Id = es.SkillId,
+                                   Skill = es.Skill,
+                                    Level = es.Level,
+                                    Score = es.Score,
+                                    YearsOfExperience = es.YearsOfExperience,
+                                })
+                .ToList(),
                 })
                 .ToListAsync();
         }

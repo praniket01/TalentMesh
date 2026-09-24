@@ -18,6 +18,7 @@ public class Employee
 
     public int AllocationPercentage { get; set; }
 
+
     public ICollection<EmployeeSkill> Skills { get; set; }
         = new List<EmployeeSkill>();
 }
