@@ -1,4 +1,17 @@
 
+export interface Skill {
+  id: string;
+  name: string;
+  category: string;
+}
+
+export interface EmployeeSkill {
+  id: string;
+  level: string;
+  score: number;
+  yearsOfExperience: number;
+  skill: Skill;
+}
 
 export interface Employee{
     id : string;
@@ -7,5 +20,5 @@ export interface Employee{
     experienceYears : string;
     location : string;
     allocationPercentage:  number;
-    skills : string[]
+    skills : EmployeeSkill[]
 }

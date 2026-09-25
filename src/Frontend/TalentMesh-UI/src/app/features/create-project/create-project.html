@@ -122,10 +122,10 @@
       </div>
 
 
-      <div formArrayName="skillRequirementss">
+      <div formArrayName="skillRequirements">
 
         @for(
-        skill of skillRequirementss.controls;
+        skill of skillRequirements.controls;
         track $index
         ){
 
@@ -169,7 +169,7 @@
       </div>
 
 
-      @if(skillRequirementss.length === 0){
+      @if(skillRequirements.length === 0){
 
       <div class="empty-skills">
 

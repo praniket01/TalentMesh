@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Project } from "../../models/project";
 import { CreateProjectRequest } from "../../models/create-project";
+import { MatchingResult } from "../../models/matching.model";
 
 @Injectable({
     providedIn : 'root'
@@ -25,4 +26,7 @@ export class ProjectService{
         return this.http.get<Project>(`${environment.apiBaseUrl}/project/${id}`);
     }
 
+    getMatchingCandidates(projectId:string) : Observable<MatchingResult>{
+        return this.http.get<MatchingResult>(`${environment.apiBaseUrl}/matching/projects/${projectId}`);
+    }
 }

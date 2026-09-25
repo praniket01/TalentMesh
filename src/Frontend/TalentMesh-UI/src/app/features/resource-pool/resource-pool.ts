@@ -1,5 +1,5 @@
-import { Component, inject, OnInit } from "@angular/core";
-import { Employee } from "../../models/employee";
+import { Component, inject, OnInit, signal } from "@angular/core";
+import { Employee, EmployeeSkill } from "../../models/employee";
 import { EmployeeService } from "../../core/services/employee.service";
 import { FormsModule } from "@angular/forms";
 
@@ -10,12 +10,12 @@ import { FormsModule } from "@angular/forms";
     styleUrl: 'resource-pool.css'
 })
 export class Resourcepool implements OnInit {
-    loading = false;
-    error = '';
+    loading = signal(false);
+    error = signal('');
     minAvailability: number | null = null;
     private readonly employeeService = inject(EmployeeService)
-    searchTerm = '';
-    selectedSkill = '';
+    searchTerm = signal('');
+    selectedSkill = signal('');
     selectedEmployee: Employee | null = null;
 
     Employees: Employee[] = [];
@@ -30,7 +30,8 @@ export class Resourcepool implements OnInit {
 
     get filteredEmployees(): Employee[] {
 
-        const search = this.searchTerm.trim().toLowerCase();
+        const search = this.searchTerm().trim().toLowerCase();
+        const selectedSkill = this.selectedSkill().trim().toLowerCase();
 
         return this.Employees.filter(employee => {
 
@@ -40,7 +41,7 @@ export class Resourcepool implements OnInit {
                 employee.designation.toLowerCase().includes(search) ||
                 employee.location.toLowerCase().includes(search) ||
                 employee.skills.some(skill =>
-                    skill.toLowerCase().includes(search)
+                    skill.skill.name.toLowerCase().includes(search)
                 );
 
             const availability =
@@ -51,9 +52,9 @@ export class Resourcepool implements OnInit {
                 availability >= this.minAvailability;
 
             const matchesSkill =
-                !this.selectedSkill ||
-                employee.skills.some(skill =>
-                    skill.toLowerCase() === this.selectedSkill.toLowerCase()
+                !selectedSkill ||
+                employee.skills.some(employeeSkill =>
+                    employeeSkill.skill.name.toLowerCase() === selectedSkill
                 );
 
             return (
@@ -67,23 +68,25 @@ export class Resourcepool implements OnInit {
     get availableSkills(): string[] {
 
         return [...new Set(
-            this.Employees.flatMap(employee => employee.skills)
+            this.Employees.flatMap(employee => employee.skills.map(x => x.skill.name))
         )].sort();
     }
 
     loadEmployees(): void {
-        this.loading = true;
-        this.error = '';
+        this.loading.set(true);
+        this.error.set('');
+
         this.employeeService.getAllEmployees().subscribe({
             next: (employees) => {
                 this.Employees = employees,
-                    this.loading = false
+                    this.loading.set(false);
+                console.log(this.Employees);
             },
 
             error: (err) => {
                 console.log(err);
                 this.error = err;
-                this.loading = false;
+                this.loading.set(false);
             }
         });
     }

@@ -2,140 +2,282 @@
 
   @if (isLoading()) {
 
-    <div class="loading">
-      Loading project...
-    </div>
+  <div class="loading">
+    Loading project...
+  </div>
 
   } @else if (error()) {
 
-    <div class="error">
-      {{ error() }}
-    </div>
+  <div class="error">
+    {{ error() }}
+  </div>
 
-    <button (click)="goBack()">
-      Back to Projects
-    </button>
+  <button (click)="goBack()">
+    Back to Projects
+  </button>
 
   } @else if (project(); as currentProject) {
 
-    <div class="page-header">
+  <div class="project-actions">
 
-      <button
-        class="back-button"
-        (click)="goBack()"
-      >
-        ← Back to Projects
-      </button>
+    <button class="back-button" (click)="goBack()">
+      ← Back to Projects
+    </button>
 
-      <span class="status">
-        {{ currentProject.status }}
+    <button class="match-button" (click)="findCandidates()" [disabled]="isMatching()">
+      @if (isMatching()) {
+      Finding Resources...
+      } @else {
+      Find Matching Resources
+      }
+    </button>
+
+    @if (matchingError()) {
+    <div class="matching-error">
+      {{ matchingError() }}
+    </div>
+    }
+
+  </div>
+
+  <div class="project-header">
+
+    <div>
+      <h1>{{ currentProject.name }}</h1>
+
+      <p class="client">
+        Client: {{ currentProject.clientName }}
+      </p>
+    </div>
+
+  </div>
+
+  <section class="project-section">
+
+    <h2>Description</h2>
+
+    <p>
+      {{ currentProject.description }}
+    </p>
+
+  </section>
+
+  <section class="project-section">
+
+    <h2>Project Timeline</h2>
+
+    <div class="timeline">
+
+      <div>
+        <span>Start Date</span>
+        <strong>
+          {{ currentProject.startDate }}
+        </strong>
+      </div>
+
+      <div>
+        <span>End Date</span>
+        <strong>
+          {{ currentProject.endDate }}
+        </strong>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="project-section">
+
+    <div class="section-header">
+
+      <div>
+        <h2>Required Skills</h2>
+
+        <p>
+          Skills required for this project
+        </p>
+      </div>
+
+      <span class="requirement-count">
+        {{ currentProject.skillRequirements.length }}
+        Skills
       </span>
 
     </div>
 
-    <div class="project-header">
+    @if (showCandidates()) {
 
-      <div>
-        <h1>{{ currentProject.name }}</h1>
-
-        <p class="client">
-          Client: {{ currentProject.clientName }}
-        </p>
-      </div>
-
-    </div>
-
-    <section class="project-section">
-
-      <h2>Description</h2>
-
-      <p>
-        {{ currentProject.description }}
-      </p>
-
-    </section>
-
-    <section class="project-section">
-
-      <h2>Project Timeline</h2>
-
-      <div class="timeline">
-
-        <div>
-          <span>Start Date</span>
-          <strong>
-            {{ currentProject.startDate }}
-          </strong>
-        </div>
-
-        <div>
-          <span>End Date</span>
-          <strong>
-            {{ currentProject.endDate }}
-          </strong>
-        </div>
-
-      </div>
-
-    </section>
-
-    <section class="project-section">
+    <section class="project-section matching-section">
 
       <div class="section-header">
 
         <div>
-          <h2>Required Skills</h2>
+          <h2>Recommended Resources</h2>
 
           <p>
-            Skills required for this project
+            Employees ranked based on skill,
+            availability and experience.
           </p>
         </div>
 
         <span class="requirement-count">
-          {{ currentProject.skillRequirements.length }}
-          Skills
+          {{ candidates().length }} Candidates
         </span>
 
       </div>
 
-      <div class="requirements">
+      @if (candidates().length === 0) {
+
+      <div class="no-candidates">
+        No matching resources were found.
+      </div>
+
+      } @else {
+
+      <div class="candidate-list">
 
         @for (
-          requirement of currentProject.skillRequirements;
-          track requirement.id
+        candidate of candidates();
+        track candidate.employeeId
         ) {
 
-          <div class="requirement-card">
+        <div class="candidate-card">
 
-            <div>
+          <div class="candidate-main">
+
+            <div class="candidate-info">
+
               <h3>
-                {{ requirement.skillName }}
+                {{ candidate.name }}
               </h3>
 
-              <span>
-                {{ requirement.requiredLevel }}
-              </span>
+              <p>
+                {{ candidate.designation }}
+                ·
+                {{ candidate.location }}
+              </p>
+
             </div>
 
-            <div class="required-count">
+            <div class="match-score">
 
               <strong>
-                {{ requirement.requiredCount }}
+                {{ candidate.matchScore }}%
               </strong>
 
               <span>
-                Required
+                Match
               </span>
 
             </div>
 
           </div>
 
+
+          <div class="candidate-metrics">
+
+            <div class="metric">
+
+              <span>Skill Match</span>
+
+              <strong>
+                {{ candidate.skillMatch }}%
+              </strong>
+
+            </div>
+
+            <div class="metric">
+
+              <span>Availability</span>
+
+              <strong>
+                {{ candidate.availabilityScore }}%
+              </strong>
+
+            </div>
+
+            <div class="metric">
+
+              <span>Experience</span>
+
+              <strong>
+                {{ candidate.experienceScore }}%
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="candidate-footer">
+
+            <span>
+              {{ candidate.experienceYears }}
+              years experience
+            </span>
+
+            <span>
+              {{ candidate.availabilityPercentage }}%
+              available
+            </span>
+
+            <button>
+              View Profile
+            </button>
+
+          </div>
+
+        </div>
+
         }
 
       </div>
 
+      }
+
     </section>
+
+    }
+
+
+    <div class="requirements">
+
+      @for (
+      requirement of currentProject.skillRequirements;
+      track requirement.id
+      ) {
+
+      <div class="requirement-card">
+
+        <div>
+          <h3>
+            {{ requirement.skillName }}
+          </h3>
+
+          <span>
+            {{ requirement.requiredLevel }}
+          </span>
+        </div>
+
+        <div class="required-count">
+
+          <strong>
+            {{ requirement.requiredCount }}
+          </strong>
+
+          <span>
+            Required
+          </span>
+
+        </div>
+
+      </div>
+
+      }
+
+    </div>
+
+  </section>
 
   }
 

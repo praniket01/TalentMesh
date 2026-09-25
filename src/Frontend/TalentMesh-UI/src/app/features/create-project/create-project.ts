@@ -70,7 +70,7 @@ export class CreateProject {
             Validators.required
         ],
 
-        skillRequirementss: this.fb.array([
+        skillRequirements: this.fb.array([
 
         ])
 
@@ -80,9 +80,9 @@ export class CreateProject {
         }
     );
 
-    get skillRequirementss(): FormArray<FormGroup> {
+    get skillRequirements(): FormArray<FormGroup> {
         return this.projectForm.get(
-            'skillRequirementss'
+            'skillRequirements'
         ) as FormArray<FormGroup>;
     }
 
@@ -110,11 +110,11 @@ export class CreateProject {
 
         });
 
-        this.skillRequirementss.push(skill);
+        this.skillRequirements.push(skill);
     }
 
     removeSkill(index: number): void {
-        this.skillRequirementss.removeAt(index);
+        this.skillRequirements.removeAt(index);
     }
     dateRangeValidator(): ValidatorFn {
         return (control: AbstractControl): ValidationErrors | null => {
@@ -151,7 +151,7 @@ export class CreateProject {
         const formValue =
             this.projectForm.getRawValue();
         const skills =
-            formValue.skillRequirementss as skillRequirementsForm[];
+            formValue.skillRequirements as skillRequirementsForm[];
 
         const request = {
             name: formValue.name!,
@@ -160,7 +160,7 @@ export class CreateProject {
             startDate: `${formValue.startDate}T00:00:00Z`,
             endDate: `${formValue.endDate}T00:00:00Z`,
 
-            skillRequirementss:
+            skillRequirements:
                 skills.map(skill => ({
                     skillName: skill.skillName!,
                     requiredLevel: skill.requiredLevel!,
