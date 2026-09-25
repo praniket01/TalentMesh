@@ -48,10 +48,16 @@ namespace TalentMesh.MatchingService.Controllers
                 var matches = await _matchingService.FindMatchesAsync(projectId, token);
                 return Ok(matches);
             }
-            catch
+            catch (Exception ex)
             {
-                return NotFound("Project not found.");  
-            }
+                Console.WriteLine($"Matching error: {ex}");
+
+                return StatusCode(500, new
+            {
+                message = ex.Message,
+                details = ex.InnerException?.Message
+            });
+}
         }
 
         private string? GetToken()

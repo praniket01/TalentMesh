@@ -105,6 +105,46 @@
 
     </div>
 
+    <div class="requirements">
+
+      @for (
+      requirement of currentProject.skillRequirements;
+      track requirement.id
+      ) {
+
+      <div class="requirement-card">
+
+        <div>
+          <h3>
+            {{ requirement.skillName }}
+          </h3>
+
+          <span>
+            {{ requirement.requiredLevel }}
+          </span>
+        </div>
+
+        <div class="required-count">
+
+          <strong>
+            {{ requirement.requiredCount }}
+          </strong>
+
+          <span>
+            Required
+          </span>
+
+        </div>
+
+      </div>
+
+      }
+
+    </div>
+
+  </section>
+
+
     @if (showCandidates()) {
 
     <section class="project-section matching-section">
@@ -239,45 +279,6 @@
 
     }
 
-
-    <div class="requirements">
-
-      @for (
-      requirement of currentProject.skillRequirements;
-      track requirement.id
-      ) {
-
-      <div class="requirement-card">
-
-        <div>
-          <h3>
-            {{ requirement.skillName }}
-          </h3>
-
-          <span>
-            {{ requirement.requiredLevel }}
-          </span>
-        </div>
-
-        <div class="required-count">
-
-          <strong>
-            {{ requirement.requiredCount }}
-          </strong>
-
-          <span>
-            Required
-          </span>
-
-        </div>
-
-      </div>
-
-      }
-
-    </div>
-
-  </section>
 
   }
 
