@@ -77,5 +77,41 @@ namespace TalentMesh.EmployeeService.Controller
             return Ok(employeeDto);
         }
 
+        [HttpPut("{id:guid}/allocation")]
+        public async Task<IActionResult> UpdateAllocation(Guid id,UpdateAllocationRequest request)
+        {
+            if (request.AllocationPercentage < 0 ||
+                request.AllocationPercentage > 100)
+            {
+                return BadRequest(new
+                {
+                    message =
+                        "Allocation percentage must be between 0 and 100."
+                });
+            }
+
+            var employee = await _context.Employees
+                .FirstOrDefaultAsync(e => e.Id == id);
+
+            if (employee == null)
+            {
+                return NotFound(new
+                {
+                    message = "Employee not found."
+                });
+            }
+
+            employee.AllocationPercentage =
+                request.AllocationPercentage;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                employee.Id,
+                employee.AllocationPercentage
+            });
+        }
+
     }
 }

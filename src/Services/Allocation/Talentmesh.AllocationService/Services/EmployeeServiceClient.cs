@@ -27,5 +27,29 @@ namespace Talentmesh.AllocationService.Services
                 $"api/employee/{EmployeeId}"
                 );
         }
+
+        public async Task<bool> UpdateAllocationAsync( Guid employeeId,int allocationPercentage)
+        {
+            var authorizationHeader =  _contextAccessor.HttpContext?.Request.Headers.Authorization
+                    .FirstOrDefault();
+
+            if (!string.IsNullOrEmpty(authorizationHeader))
+            {
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    AuthenticationHeaderValue.Parse(
+                        authorizationHeader);
+            }
+
+            var request = new
+            {
+                allocationPercentage
+            };
+
+            var response = await _httpClient.PutAsJsonAsync(
+                $"api/employee/{employeeId}/allocation",
+                request);
+
+            return response.IsSuccessStatusCode;
+        }
     }
 }
