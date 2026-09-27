@@ -26,6 +26,11 @@
         "Path": "src\\Services\\Matching\\TalentMesh.MatchingService\\TalentMesh.MatchingService.csproj",
         "Action": "Start",
         "DebugTarget": "http"
+      },
+      {
+        "Path": "src\\Services\\Allocation\\Talentmesh.AllocationService\\Talentmesh.AllocationService.csproj",
+        "Action": "Start",
+        "DebugTarget": "http"
       }
     ]
   }

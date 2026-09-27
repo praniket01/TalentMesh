@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens.Experimental;
 using System.Runtime;
 using System.Text;
 using Talentmesh.AllocationService.Data;
+using Talentmesh.AllocationService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,14 @@ builder.Services.AddDbContext<AllocationDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddHttpClient<EmployeeServiceClient>(client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["Services:EmployeeService"]);
+});
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
         options =>
         {
