@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TalentMesh.Gateway")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c7b3e8fa518178c6d6951cd24968bd8e7d6fc9f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ca8bbef25a69d8efadd3b1d82c6130b1130561db")]
 [assembly: System.Reflection.AssemblyProductAttribute("TalentMesh.Gateway")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TalentMesh.Gateway")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -2,6 +2,8 @@ import { Component, signal } from "@angular/core";
 import { Project } from "../../models/project";
 import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { ProjectService } from "../../core/services/project.service";
+import { sign } from "crypto";
+import { CandidateMatch } from "../../models/matching.model";
 
 @Component({
     selector: 'app-project-details',
@@ -14,6 +16,10 @@ export class ProjectDetails {
     project = signal<Project | null>(null);
     isLoading = signal(true);
     error = signal('');
+    candidates = signal<CandidateMatch[]>([]);
+    isMatching = signal(false);
+    matchingError = signal('');
+    showCandidates = signal(false);
 
     constructor(
         private route: ActivatedRoute,
@@ -58,6 +64,38 @@ export class ProjectDetails {
         });
     }
 
+    findCandidates(): void {
+        const currentProject = this.project();
+
+        if (!currentProject) return;
+
+
+        this.isMatching.set(true);
+        this.matchingError.set('');
+        this.showCandidates.set(false);
+
+        this.projectService.getMatchingCandidates(currentProject.id)
+            .subscribe({
+                next: (result) => {
+                    this.candidates.set(result.candidates);
+                    this.showCandidates.set(true);
+                    this.isMatching.set(false);
+                },
+            error :(error) => {
+                    console.error(
+                        'Failed to find matching candidates:',
+                        error
+                    );
+
+                    this.matchingError.set(
+                        'Unable to find matching resources.'
+                    );
+
+                    this.isMatching.set(false);
+                }
+            })
+
+    }
     goBack(): void {
         this.router.navigate(['/projects']);
     }

@@ -11,5 +11,5 @@ export interface CreateProjectRequest {
     clientName: string;
     startDate: string;
     endDate: string;
-    skillRequirementss: ProjectskillRequirementsRequest[];
+    skillRequirements: ProjectskillRequirementsRequest[];
 }
