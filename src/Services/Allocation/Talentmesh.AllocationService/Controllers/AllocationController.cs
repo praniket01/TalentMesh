@@ -28,6 +28,7 @@ namespace Talentmesh.AllocationService.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "ProjectManager")]
         public async Task<IActionResult> CreateAllocation(CreateAllocationRequest request)
         {
             if (request.AllocationPercentage <= 0 ||
@@ -119,6 +120,7 @@ namespace Talentmesh.AllocationService.Controllers
         }
 
         [HttpPost("{id:guid}/approve")]
+        [Authorize(Roles = "ResourceManager")]
         public async Task<IActionResult> ApproveAllocation(Guid id)
         {
             var allocation =
@@ -228,6 +230,7 @@ namespace Talentmesh.AllocationService.Controllers
         }
 
         [HttpPost("{id:guid}/reject")]
+        [Authorize(Roles = "ResourceManager")]
         public async Task<IActionResult> RejectAllocation(Guid id,RejectAllocationRequest request)
         {
             var allocation =

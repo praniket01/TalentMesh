@@ -145,139 +145,233 @@
   </section>
 
 
-    @if (showCandidates()) {
+  @if (showCandidates()) {
 
-    <section class="project-section matching-section">
+  <section class="project-section matching-section">
 
-      <div class="section-header">
+    <div class="section-header">
 
-        <div>
-          <h2>Recommended Resources</h2>
+      <div>
+        <h2>Recommended Resources</h2>
 
-          <p>
-            Employees ranked based on skill,
-            availability and experience.
-          </p>
+        <p>
+          Employees ranked based on skill,
+          availability and experience.
+        </p>
+      </div>
+
+      <span class="requirement-count">
+        {{ candidates().length }} Candidates
+      </span>
+
+    </div>
+
+    @if (candidates().length === 0) {
+
+    <div class="no-candidates">
+      No matching resources were found.
+    </div>
+
+    } @else {
+
+    <div class="candidate-list">
+
+      @for (
+      candidate of candidates();
+      track candidate.employeeId
+      ) {
+
+      <div class="candidate-card">
+
+        <div class="candidate-main">
+
+          <div class="candidate-info">
+
+            <h3>
+              {{ candidate.name }}
+            </h3>
+
+            <p>
+              {{ candidate.designation }}
+              ·
+              {{ candidate.location }}
+            </p>
+
+          </div>
+
+          <div class="match-score">
+
+            <strong>
+              {{ candidate.matchScore }}%
+            </strong>
+
+            <span>
+              Match
+            </span>
+
+          </div>
+
         </div>
 
-        <span class="requirement-count">
-          {{ candidates().length }} Candidates
-        </span>
 
-      </div>
+        <div class="candidate-metrics">
 
-      @if (candidates().length === 0) {
+          <div class="metric">
 
-      <div class="no-candidates">
-        No matching resources were found.
-      </div>
+            <span>Skill Match</span>
 
-      } @else {
-
-      <div class="candidate-list">
-
-        @for (
-        candidate of candidates();
-        track candidate.employeeId
-        ) {
-
-        <div class="candidate-card">
-
-          <div class="candidate-main">
-
-            <div class="candidate-info">
-
-              <h3>
-                {{ candidate.name }}
-              </h3>
-
-              <p>
-                {{ candidate.designation }}
-                ·
-                {{ candidate.location }}
-              </p>
-
-            </div>
-
-            <div class="match-score">
-
-              <strong>
-                {{ candidate.matchScore }}%
-              </strong>
-
-              <span>
-                Match
-              </span>
-
-            </div>
+            <strong>
+              {{ candidate.skillMatch }}%
+            </strong>
 
           </div>
 
+          <div class="metric">
 
-          <div class="candidate-metrics">
+            <span>Availability</span>
 
-            <div class="metric">
-
-              <span>Skill Match</span>
-
-              <strong>
-                {{ candidate.skillMatch }}%
-              </strong>
-
-            </div>
-
-            <div class="metric">
-
-              <span>Availability</span>
-
-              <strong>
-                {{ candidate.availabilityScore }}%
-              </strong>
-
-            </div>
-
-            <div class="metric">
-
-              <span>Experience</span>
-
-              <strong>
-                {{ candidate.experienceScore }}%
-              </strong>
-
-            </div>
+            <strong>
+              {{ candidate.availabilityScore }}%
+            </strong>
 
           </div>
 
+          <div class="metric">
 
-          <div class="candidate-footer">
+            <span>Experience</span>
 
-            <span>
-              {{ candidate.experienceYears }}
-              years experience
-            </span>
+            <strong>
+              {{ candidate.experienceScore }}%
+            </strong>
 
-            <span>
-              {{ candidate.availabilityPercentage }}%
-              available
-            </span>
+          </div>
 
+        </div>
+
+
+        <div class="candidate-footer">
+
+          <span>
+            {{ candidate.experienceYears }}
+            years experience
+          </span>
+
+          <span>
+            Current allocation:
+            {{ candidate.allocationPercentage }}%
+          </span>
+
+          <span>
+            Available:
+            {{ candidate.availabilityPercentage }}%
+          </span>
+          <div class="candidate-actions">
+
+            <button type="button" (click)="requestAllocation(candidate)">
+              Request Allocation
+            </button>
             <button>
               View Profile
             </button>
+          </div>
+        </div>
+
+        @if (showAllocationDialog() && allocationEmployee(); as employee) {
+
+        <div class="allocation-overlay">
+
+          <div class="allocation-dialog">
+
+            <h2>Request Allocation</h2>
+
+            <p>
+              <strong>{{ employee.name }}</strong>
+            </p>
+
+            <p>
+              {{ employee.designation }}
+            </p>
+
+            <div class="allocation-summary">
+
+              <div>
+                <span>Current Allocation</span>
+                <strong>
+                  {{ employee.allocationPercentage }}%
+                </strong>
+              </div>
+
+              <div>
+                <span>Available</span>
+                <strong>
+                  {{ employee.availabilityPercentage }}%
+                </strong>
+              </div>
+
+            </div>
+
+            <label for="allocation">
+              Requested Allocation
+            </label>
+
+            <input id="allocation" type="number" min="1" [max]="employee.availabilityPercentage"
+              [value]="allocationPercentage()" (input)="
+          allocationPercentage.set(
+            +$any($event.target).value
+          )
+        " />
+
+            <p>
+              New allocation after approval:
+              <strong>
+                {{
+                employee.allocationPercentage +
+                allocationPercentage()
+                }}%
+              </strong>
+            </p>
+
+            @if (allocationError()) {
+
+            <div class="error">
+              {{ allocationError() }}
+            </div>
+
+            }
+
+            <div class="dialog-actions">
+
+              <button type="button" (click)="closeAllocationDialog()" [disabled]="isSubmittingAllocation()">
+                Cancel
+              </button>
+
+              <button type="button" (click)="submitAllocation()" [disabled]="isSubmittingAllocation()">
+
+                @if (isSubmittingAllocation()) {
+                Submitting...
+                } @else {
+                Submit Request
+                }
+
+              </button>
+
+            </div>
 
           </div>
 
         </div>
-
         }
-
       </div>
 
       }
 
-    </section>
+    </div>
 
     }
+
+  </section>
+
+  }
 
 
   }
