@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Allocation, CreateAllocationRequest } from "../../models/allocation.model";
 import { Observable } from "rxjs";
@@ -20,10 +20,21 @@ export class AllocationService {
     }
 
     approveAllocation(id: string): Observable<Allocation> {
-        return this.http.post<Allocation>(`${this.baseUrl}/${id}/approve`,{});
+        return this.http.post<Allocation>(`${this.baseUrl}/${id}/approve`, {});
     }
 
     rejectAllocation(id: string, reason: string): Observable<Allocation> {
         return this.http.post<Allocation>(`${this.baseUrl}/${id}/reject`, { reason });
+    }
+
+
+    getAllocations(status?: string): Observable<Allocation[]> {
+        let params = new HttpParams();
+
+        if (status) {
+            params = params.set('status', status);
+        }
+
+        return this.http.get<Allocation[]>(this.baseUrl, { params });
     }
 }

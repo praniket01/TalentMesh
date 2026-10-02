@@ -119,6 +119,20 @@ namespace Talentmesh.AllocationService.Controllers
             });
         }
 
+        [HttpGet]
+        [Authorize(Roles = "ResourceManager")]
+        public async Task<IActionResult> GetAllAllocations([FromQuery] string? status= null){
+            var query = _context.Allocations.AsNoTracking();
+
+            if(!string.IsNullOrWhiteSpace(status)){
+                query = query.Where(a => a.Status == status);
+            }
+
+            var allocations = await query.OrderBy(a => a.RequestedAt).ToListAsync();
+
+            return Ok(allocations);
+        }
+
         [HttpPost("{id:guid}/approve")]
         [Authorize(Roles = "ResourceManager")]
         public async Task<IActionResult> ApproveAllocation(Guid id)

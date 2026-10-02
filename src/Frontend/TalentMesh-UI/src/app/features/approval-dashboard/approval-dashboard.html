@@ -1,0 +1,133 @@
+<section class="approval-page">
+    <header class="page-header">
+        <div>
+            <h1>Allocation Approvals</h1>
+            <p>Review resource allocation requests awaiting your decision.</p>
+        </div>
+
+        <button type="button" (click)="loadPendingAllocations()" [disabled]="isLoading()">
+            {{ isLoading() ? 'Refreshing...' : 'Refresh' }}
+        </button>
+    </header>
+
+
+    @if (actionMessage()) {
+    <div class="success-message" role="status">
+        {{ actionMessage() }}
+    </div>
+    }
+
+    @if (actionError() && !selectedForRejection()) {
+    <div class="error" role="alert">
+        {{ actionError() }}
+    </div>
+    }
+
+    <div class="summary-card">
+        <span>Pending Requests</span>
+        <strong>{{ allocations().length }}</strong>
+    </div>
+
+    @if (isLoading()) {
+    <p class="loading">Loading allocation requests...</p>
+    } @else if (error()) {
+    <div class="error" role="alert">{{ error() }}</div>
+    <button type="button" (click)="loadPendingAllocations()">
+        Try Again
+    </button>
+    } @else if (allocations().length === 0) {
+    <div class="empty-state">
+        <h2>All caught up!</h2>
+        <p>There are no pending allocation requests.</p>
+    </div>
+    } @else {
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Project ID</th>
+                    <th>Employee ID</th>
+                    <th>Requested Allocation</th>
+                    <th>Requested By</th>
+                    <th>Request Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for (allocation of allocations(); track allocation.id) {
+                <tr>
+                    <td>{{ allocation.projectId }}</td>
+                    <td>{{ allocation.employeeId }}</td>
+                    <td>{{ allocation.allocationPercentage }}%</td>
+                    <td>{{ allocation.requestedBy }}</td>
+                    <td>{{ allocation.requestedAt | date:'medium' }}</td>
+                    <td>
+                        <span class="status-badge">
+                            {{ allocation.status }}
+                        </span>
+                    </td>
+                    <td>
+                        <button type="button" (click)="approveAllocation(allocation)"
+                            [disabled]="processingAllocationId() !== null">
+                            @if (processingAllocationId() === allocation.id) {
+                            Processing...
+                            } @else {
+                            Approve
+                            }
+                        </button>
+                        <button type="button" type="button" (click)="openRejectDialog(allocation)"
+                            [disabled]="processingAllocationId() !== null">
+                            Reject
+                        </button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+        @if (selectedForRejection(); as allocation) {
+        <div class="dialog-overlay">
+            <div class="rejection-dialog" role="dialog" aria-modal="true" aria-labelledby="reject-title">
+
+                <h2 id="reject-title">Reject Allocation Request</h2>
+
+                <p>
+                    Requested allocation:
+                    <strong>{{ allocation.allocationPercentage }}%</strong>
+                </p>
+
+                <label for="rejection-reason">Reason for rejection</label>
+
+                <textarea id="rejection-reason" rows="4" maxlength="500"
+                    placeholder="Explain why this request is being rejected..." [value]="rejectionReason()"
+                    [disabled]="isSubmittingRejection()" (input)="rejectionReason.set($any($event.target).value)">
+      </textarea>
+
+                @if (actionError()) {
+                <div class="error" role="alert">
+                    {{ actionError() }}
+                </div>
+                }
+
+                <div class="dialog-actions">
+                    <button type="button" (click)="closeRejectDialog()" [disabled]="isSubmittingRejection()">
+                        Cancel
+                    </button>
+
+                    <button type="button" (click)="confirmRejection()"
+                        [disabled]="isSubmittingRejection() || !rejectionReason().trim()">
+                        @if (isSubmittingRejection()) {
+                        Rejecting...
+                        } @else {
+                        Confirm Rejection
+                        }
+                    </button>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+    }
+</section>

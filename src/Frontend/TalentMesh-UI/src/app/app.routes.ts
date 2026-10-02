@@ -43,6 +43,13 @@ export const routes: Routes = [
                 .then(m => m.Resourcepool)
         ,
     },
+    {
+        path: 'allocations/approvals',
+        loadComponent: () =>
+            import('./features/approval-dashboard/approval-dashboard')
+                .then(m => m.ApprovalDashboard),
+        // Apply your existing ResourceManager role guard here.
+    },
 
     {
         path: '',

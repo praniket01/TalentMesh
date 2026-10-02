@@ -9,7 +9,7 @@ export interface Allocation {
     projectId: string;
     employeeId: string;
     allocationPercentage: number;
-    status: string;
+    status: 'PendingApproval' | 'Approved' | 'Rejected';
     requestedBy: string;
     approvedBy?: string | null;
     requestedAt: string;
