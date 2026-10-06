@@ -2,6 +2,10 @@ import { DatePipe } from "@angular/common";
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { AllocationService } from "../../core/services/allocation.service";
 import { Allocation } from "../../models/allocation.model";
+import { Project } from "../../models/project";
+import { Employee } from "../../models/employee";
+import { ProjectService } from "../../core/services/project.service";
+import { EmployeeService } from "../../core/services/employee.service";
 
 @Component({
     selector: 'app-approval-dashboard',
@@ -22,9 +26,30 @@ export class ApprovalDashboard implements OnInit {
     processingAllocationId = signal<string | null>(null);
     actionMessage = signal('');
     actionError = signal('');
+    projects = signal<Project[]>([]);
+    employees = signal<Employee[]>([]);
+    projectService = inject(ProjectService);
+    employeeService = inject(EmployeeService)
+
+    loadReferenceData(): void {
+        this.projectService.getProjects().subscribe({
+            next: (projects) => this.projects.set(projects),
+            error: (error) => {
+                console.error('Failed to load projects:', error);
+            }
+        });
+
+        this.employeeService.getAllEmployees().subscribe({
+            next: (employees) => this.employees.set(employees),
+            error: (error) => {
+                console.error('Failed to load employees:', error);
+            }
+        });
+    }
 
     ngOnInit(): void {
         this.loadPendingAllocations();
+        this.loadReferenceData();
     }
     loadPendingAllocations(): void {
         this.isLoading.set(true);
@@ -46,6 +71,19 @@ export class ApprovalDashboard implements OnInit {
                 this.isLoading.set(false);
             }
         })
+    }
+    getProjectName(projectId: string): string {
+        return (
+            this.projects().find(project => project.id === projectId)?.name
+            ?? projectId
+        );
+    }
+
+    getEmployeeName(employeeId: string): string {
+        return (
+            this.employees().find(employee => employee.id === employeeId)?.name
+            ?? employeeId
+        );
     }
 
     approveAllocation(allocation: Allocation): void {

@@ -58,8 +58,8 @@
             <tbody>
                 @for (allocation of allocations(); track allocation.id) {
                 <tr>
-                    <td>{{ allocation.projectId }}</td>
-                    <td>{{ allocation.employeeId }}</td>
+                    <td>{{ getProjectName(allocation.projectId)}}</td>
+                    <td>{{ getEmployeeName(allocation.employeeId)}}</td>
                     <td>{{ allocation.allocationPercentage }}%</td>
                     <td>{{ allocation.requestedBy }}</td>
                     <td>{{ allocation.requestedAt | date:'medium' }}</td>
