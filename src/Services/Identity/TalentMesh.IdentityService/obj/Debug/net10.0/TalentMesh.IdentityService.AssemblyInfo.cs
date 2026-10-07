@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TalentMesh.IdentityService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1ded06893204b7de4b8809c38af276214882f548")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5d051a1fd5c295bd514925beffb2c4cb99c67ea")]
 [assembly: System.Reflection.AssemblyProductAttribute("TalentMesh.IdentityService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TalentMesh.IdentityService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

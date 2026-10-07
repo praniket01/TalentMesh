@@ -1,11 +1,24 @@
-.sidebar {
-  width: 240px;
-  flex-shrink: 0;
+:host {
+  display: block;
 
-  background: #111827;
-  padding: 20px 12px;
+  width: 240px;
+  min-width: 240px;
+
+  height: 100%;
 }
 
+.sidebar {
+  width: 240px;
+  height: 100%;
+
+  box-sizing: border-box;
+
+  background: #111827;
+
+  padding: 20px 12px;
+
+  overflow-y: auto;
+}
 nav {
   display: flex;
   flex-direction: column;
