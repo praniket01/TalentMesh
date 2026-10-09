@@ -16,9 +16,17 @@
         U
       </div>
 
-      <div class="user-info">
-        <span class="user-name">User</span>
-        <span class="user-role">Employee</span>
+      <div class="user-menu">
+        @if (authService.currentUser(); as user) {
+        <div class="user-details">
+          <span class="user-email">{{ user.email }}</span>
+          <span class="user-role">{{ user.role }}</span>
+        </div>
+
+        <button type="button" (click)="logout()">
+          Logout
+        </button>
+        }
       </div>
     </div>
 

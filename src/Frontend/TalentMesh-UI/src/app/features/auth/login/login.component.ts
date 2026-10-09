@@ -1,7 +1,7 @@
 import { Component, inject } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AuthService } from "../../../core/services/auth.service";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
     selector: 'login',
@@ -11,8 +11,9 @@ import { Router } from "@angular/router";
     styleUrl: 'login.component.css',
 })
 export class LoginComponent {
-    private autService = inject(AuthService);
+    private route = inject(ActivatedRoute);
     private router = inject(Router);
+    private autService = inject(AuthService);
 
     email = '';
     password = '';
@@ -37,7 +38,15 @@ export class LoginComponent {
             .subscribe({
                 next: () => {
                     this.isLoading = false;
-                    this.router.navigate(['/dashboard']);
+                    const returnUrl =
+                        this.route.snapshot.queryParamMap.get('returnUrl');
+
+                    const destination =
+                        returnUrl?.startsWith('/') && !returnUrl.startsWith('//')
+                            ? returnUrl
+                            : '/dashboard';
+
+                    this.router.navigateByUrl(destination);
                 },
                 error: (err) => {
                     console.log(err);
